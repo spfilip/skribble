@@ -19,10 +19,31 @@ namespace skribble
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void adminLogin_Click(object sender, EventArgs e)
+        {
+            AdminAuthentication AA = new AdminAuthentication();
+            AA.ShowDialog();
+        }
+
+        private void startGame_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void Launcher_Load(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void highScore_Click(object sender, EventArgs e)
         {
 
         }

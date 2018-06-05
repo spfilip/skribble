@@ -1,1 +1,13 @@
 c:\users\fico\documents\visual studio 2015\Projects\skribble\skribble\bin\Debug\skribble.exe.config
+C:\Users\Filip\Desktop\Skribble\skribble\skribble\bin\Debug\skribble.exe.config
+C:\Users\Filip\Desktop\Skribble\skribble\skribble\bin\Debug\skribble.exe
+C:\Users\Filip\Desktop\Skribble\skribble\skribble\bin\Debug\skribble.pdb
+C:\Users\Filip\Desktop\Skribble\skribble\skribble\obj\Debug\skribble.csprojResolveAssemblyReference.cache
+C:\Users\Filip\Desktop\Skribble\skribble\skribble\obj\Debug\skribble.AdminAuthentication.resources
+C:\Users\Filip\Desktop\Skribble\skribble\skribble\obj\Debug\skribble.Game.resources
+C:\Users\Filip\Desktop\Skribble\skribble\skribble\obj\Debug\skribble.Launcher.resources
+C:\Users\Filip\Desktop\Skribble\skribble\skribble\obj\Debug\skribble.Properties.Resources.resources
+C:\Users\Filip\Desktop\Skribble\skribble\skribble\obj\Debug\skribble.csproj.GenerateResource.cache
+C:\Users\Filip\Desktop\Skribble\skribble\skribble\obj\Debug\skribble.csproj.CoreCompileInputs.cache
+C:\Users\Filip\Desktop\Skribble\skribble\skribble\obj\Debug\skribble.exe
+C:\Users\Filip\Desktop\Skribble\skribble\skribble\obj\Debug\skribble.pdb
