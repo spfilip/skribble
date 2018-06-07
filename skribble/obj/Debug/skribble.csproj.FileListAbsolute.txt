@@ -11,3 +11,14 @@ C:\Users\Filip\Desktop\Skribble\skribble\skribble\obj\Debug\skribble.csproj.Gene
 C:\Users\Filip\Desktop\Skribble\skribble\skribble\obj\Debug\skribble.csproj.CoreCompileInputs.cache
 C:\Users\Filip\Desktop\Skribble\skribble\skribble\obj\Debug\skribble.exe
 C:\Users\Filip\Desktop\Skribble\skribble\skribble\obj\Debug\skribble.pdb
+C:\Users\Fico\Desktop\Skribble\skribble\skribble\bin\Debug\skribble.exe.config
+C:\Users\Fico\Desktop\Skribble\skribble\skribble\obj\Debug\skribble.exe
+C:\Users\Fico\Desktop\Skribble\skribble\skribble\obj\Debug\skribble.pdb
+C:\Users\Fico\Desktop\Skribble\skribble\skribble\bin\Debug\skribble.exe
+C:\Users\Fico\Desktop\Skribble\skribble\skribble\bin\Debug\skribble.pdb
+C:\Users\Fico\Desktop\Skribble\skribble\skribble\obj\Debug\skribble.csprojResolveAssemblyReference.cache
+C:\Users\Fico\Desktop\Skribble\skribble\skribble\obj\Debug\skribble.AdminAuthentication.resources
+C:\Users\Fico\Desktop\Skribble\skribble\skribble\obj\Debug\skribble.Game.resources
+C:\Users\Fico\Desktop\Skribble\skribble\skribble\obj\Debug\skribble.Launcher.resources
+C:\Users\Fico\Desktop\Skribble\skribble\skribble\obj\Debug\skribble.Properties.Resources.resources
+C:\Users\Fico\Desktop\Skribble\skribble\skribble\obj\Debug\skribble.csproj.GenerateResource.Cache

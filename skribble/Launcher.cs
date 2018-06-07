@@ -35,7 +35,8 @@ namespace skribble
 
         private void startGame_Click(object sender, EventArgs e)
         {
-            
+            Game obj = new Game();
+            obj.Show();
         }
 
         private void Launcher_Load(object sender, EventArgs e)

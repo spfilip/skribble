@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.backButton = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -42,6 +43,7 @@
             this.highScoreButton = new System.Windows.Forms.Button();
             this.startButton = new System.Windows.Forms.Button();
             this.nameTextBox = new System.Windows.Forms.TextBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,10 +66,13 @@
             // 
             // textBox1
             // 
+            this.textBox1.AcceptsReturn = true;
             this.textBox1.Location = new System.Drawing.Point(378, 210);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(214, 20);
             this.textBox1.TabIndex = 3;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
+            this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown_1);
             // 
             // hintLabel
             // 
@@ -146,7 +151,7 @@
             this.highScoreButton.Name = "highScoreButton";
             this.highScoreButton.Size = new System.Drawing.Size(101, 23);
             this.highScoreButton.TabIndex = 12;
-            this.highScoreButton.Text = "High Score";
+            this.highScoreButton.Text = "High Score Table";
             this.highScoreButton.UseVisualStyleBackColor = true;
             // 
             // startButton
@@ -157,6 +162,7 @@
             this.startButton.TabIndex = 13;
             this.startButton.Text = "Start";
             this.startButton.UseVisualStyleBackColor = true;
+            this.startButton.Click += new System.EventHandler(this.startButton_Click);
             // 
             // nameTextBox
             // 
@@ -164,6 +170,11 @@
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Size = new System.Drawing.Size(100, 20);
             this.nameTextBox.TabIndex = 14;
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Game
             // 
@@ -186,6 +197,7 @@
             this.Controls.Add(this.backButton);
             this.Name = "Game";
             this.Text = "Game";
+            this.Load += new System.EventHandler(this.Game_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -208,5 +220,6 @@
         private System.Windows.Forms.Button highScoreButton;
         private System.Windows.Forms.Button startButton;
         private System.Windows.Forms.TextBox nameTextBox;
+        private System.Windows.Forms.Timer timer1;
     }
 }
