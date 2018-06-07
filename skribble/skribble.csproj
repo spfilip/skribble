@@ -52,6 +52,7 @@
     <Compile Include="AdminAuthentication.Designer.cs">
       <DependentUpon>AdminAuthentication.cs</DependentUpon>
     </Compile>
+    <Compile Include="HighScoreTable.cs" />
     <Compile Include="Game.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +65,7 @@
     <Compile Include="Launcher.Designer.cs">
       <DependentUpon>Launcher.cs</DependentUpon>
     </Compile>
+    <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AdminAuthentication.resx">
