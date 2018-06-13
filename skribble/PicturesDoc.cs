@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace skribble
 {
-    public class HighScoreTable
+    public class PicturesDoc
     {
-        public List<Player> listaHS;
-        public HighScoreTable()
+        public List<String> pictures;
+        public PicturesDoc()
         {
-            listaHS = new List<Player>();
+            pictures = new List<String>();
         }
-        
     }
 }

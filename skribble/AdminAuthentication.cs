@@ -118,7 +118,8 @@ namespace skribble
             {
                 System.IO.File.Copy(picturePath, dest, true);
             }
- 
+            Launcher obj = Parent as Launcher;
+            obj.pcDoc.pictures.Add(pictureNameTextBox.Text);
         }
 
         private void pictureNameTextBox_TextChanged(object sender, EventArgs e)

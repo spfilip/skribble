@@ -16,6 +16,8 @@ namespace skribble
         int timeLeft;
         int currentScore;
         String playerName;
+        public Player newPlayer;
+        string pictureFolder = System.IO.Path.GetFullPath(@"..\\..\\Pictures\\");
         public Game()
         {
             InitializeComponent();
@@ -42,7 +44,7 @@ namespace skribble
             if (timeLeft == 0)
             {
                 timer1.Stop();
-                
+                MessageBox.Show(newPlayer.ToString());
             }
             timeLabel.Text = "00:" + timeLeft.ToString();
         }
@@ -73,10 +75,12 @@ namespace skribble
         {
             //Proveri dali vneseniot tekst e ist so imeto na slikata
             //zgolemi score za 1
+            currentScore++;
             if (e.KeyCode == Keys.Enter)
             {
                 csLabel.Text = "1";
             }
+            newPlayer = new Player(playerName, currentScore);
         }
     }
 }
