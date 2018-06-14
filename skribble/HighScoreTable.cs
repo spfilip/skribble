@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace skribble
 {
+    [Serializable]
     public class HighScoreTable
     {
         public List<Player> listaHS;

@@ -18,17 +18,15 @@ namespace skribble
         bool f2 = true;
         bool f3 = true;
         string picturePath = "";
-        public string pictureName = "";
+        public String pictureName;
+
         string pictureFolder = System.IO.Path.GetFullPath(@"..\\..\\Pictures\\");
         public AdminAuthentication()
         {
             InitializeComponent();
+            pictureName = "";
         }
-
-        private void AdminAuthentication_Load(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void userTextBox_Click(object sender, EventArgs e)
         {
@@ -65,8 +63,13 @@ namespace skribble
         {
             if(userTextBox.Text=="admin" && passwordTextBox.Text=="finkiVP")
             {
+                MessageBox.Show("Successful login");
                 browsePcButton.Enabled = true;
                 pictureNameTextBox.Enabled = true;
+            }
+            else
+            {
+                MessageBox.Show("Unsuccessful login");
             }
         }
 
@@ -94,24 +97,27 @@ namespace skribble
             if (e.KeyCode == Keys.Enter)
             {
                 loginButton.PerformClick();
-                if (passwordTextBox.Text == "finkiVP")
-                {
-                    epPassword.Icon = Properties.Resources.if_f_check_256_282474;
-                    epPassword.SetError(passwordTextBox, " Username error");
-                }
-                else
-                {
-                    epPassword.Icon = Properties.Resources.if_f_cross_256_282471;
-                    epPassword.SetError(passwordTextBox, " Ok");
-                }
             }
         }
 
         private void addPictureButton_Click(object sender, EventArgs e)
         {
+            //     string dest = pictureFolder + pictureNameTextBox.Text + ".jpg";
+            //    if (pictureNameTextBox.Text == "")
+            //    {
+            //          MessageBox.Show("Enter valid name");
+            //      }
+            //      else
+            //     {
+            //         System.IO.File.Copy(picturePath, dest, true);
+            //      }
+            //       Launcher obj = Parent as Launcher;
+            //     obj.pcDoc.pictures.Add(pictureNameTextBox.Text);
+
             string dest = pictureFolder + pictureNameTextBox.Text + ".jpg";
             System.IO.File.Copy(picturePath, dest, true);
             pictureName = pictureNameTextBox.Text;
+            DialogResult = DialogResult.OK;
             this.Close();
         }
 
@@ -138,32 +144,5 @@ namespace skribble
             }
         }
 
-        private void userTextBox_Leave(object sender, EventArgs e)
-        {
-            if (userTextBox.Text == "admin")
-            {
-                epUsername.Icon = Properties.Resources.if_f_check_256_282474;
-                epUsername.SetError(userTextBox, " Username error");
-            }
-            else
-            {
-                epUsername.Icon = Properties.Resources.if_f_cross_256_282471;
-                epUsername.SetError(userTextBox, " Ok");
-            }
-        }
-
-        private void passwordTextBox_Leave(object sender, EventArgs e)
-        {
-            if (passwordTextBox.Text == "finkiVP")
-            {
-                epPassword.Icon = Properties.Resources.if_f_check_256_282474;
-                epPassword.SetError(passwordTextBox, " Username error");
-            }
-            else
-            {
-                epPassword.Icon = Properties.Resources.if_f_cross_256_282471;
-                epPassword.SetError(passwordTextBox, " Ok");
-            }
-        }
     }
 }

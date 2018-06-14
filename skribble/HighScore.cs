@@ -11,7 +11,8 @@ using System.Windows.Forms;
 
 namespace skribble
 {
-    [Serializable] public partial class HighScore : Form
+    
+    public partial class HighScore : Form
     {
         
         public HighScore(List<Player> players)
@@ -19,12 +20,14 @@ namespace skribble
             InitializeComponent();
             foreach(Player player in players)
             {
+
                 listBox1.Items.Add(player);
+                
             }
             
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void closeBtn_Click(object sender, EventArgs e)
         {
             Close();
         }

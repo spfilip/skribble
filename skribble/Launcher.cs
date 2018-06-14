@@ -16,56 +16,82 @@ namespace skribble
     public partial class Launcher : Form
     {
         public HighScoreTable hsTable;
-        public PicturesDoc pcDoc = null;
+        public PicturesDoc pcDoc;
         public List<Player> players;
+        string highScoreName;
         public Launcher()
         {
             InitializeComponent();
             hsTable = new HighScoreTable();
             pcDoc = new PicturesDoc();
+
+            DirectoryInfo d = new DirectoryInfo(@"..\\..\\Pictures\\");
+            FileInfo[] Files = d.GetFiles("*.jpg");
+            foreach (FileInfo file in Files)
+            {
+                pcDoc.addPicture(file);
+            }
+
+            System.IO.Directory.CreateDirectory(System.IO.Path.GetFullPath(@"..\\..\\") + "High Scores");
+
+            highScoreName = Path.GetFullPath(@"..\\..\\High Scores\\") + "hs.hst";
+ 
             players = new List<Player>();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
+ 
+            try
+            {
+                using (FileStream fileStream = new FileStream(highScoreName, FileMode.Open))
+                {
+                    IFormatter formater = new BinaryFormatter();
+                    hsTable = (HighScoreTable)formater.Deserialize(fileStream);
+                }
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show("Could not read file: " + highScoreName);
+                
+                using (FileStream fileStream = new FileStream(highScoreName, FileMode.Create))
+                {
+                    IFormatter formatter = new BinaryFormatter();
+                    formatter.Serialize(fileStream, hsTable);
+                }
+            }
         }
 
         private void adminLogin_Click(object sender, EventArgs e)
         {
             AdminAuthentication AA = new AdminAuthentication();
-            AA.ShowDialog();
-            pcDoc.pictures.Add(AA.pictureName);
-            MessageBox.Show(pcDoc.pictures.Count.ToString());
+            if (AA.ShowDialog()==DialogResult.OK)
+                pcDoc.pictures.Add(AA.pictureName);
+
+            //MessageBox.Show(pcDoc.pictures.Count.ToString());
         }
 
         private void startGame_Click(object sender, EventArgs e)
         {
-            //String fileName = System.IO.Path.GetFullPath(@"..\\..\\Pictures\\");
-            Game obj = new Game();
+            Game obj = new Game(hsTable, pcDoc);
             obj.ShowDialog();
-            hsTable.listaHS.Add(obj.newPlayer);
-            //***************SAVE SCORE****************
-            //System.Runtime.Serialization.IFormatter fmt = 
-            //    new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-            //FileStream strm = new FileStream("HighScore", FileMode.Create, FileAccess.Write, FileShare.None);
-            //fmt.Serialize(strm, hsTable);
-            //strm.Close();
-          }
+            //while (obj.ShowDialog()==DialogResult.Yes)
+            //{
+            // obj = new Game(hsTable, pcDoc);
+            // hsTable.listaHS.Add(obj.player);
 
-        private void Launcher_Load(object sender, EventArgs e)
-        {
-           
+            //}
+
+            if (obj.player.Name!=null && obj.DialogResult!=DialogResult.Abort)
+                hsTable.listaHS.Add(obj.player);
+
+            using (FileStream fileStream = new FileStream(highScoreName, FileMode.Create))
+            {
+                IFormatter formatter = new BinaryFormatter();
+                formatter.Serialize(fileStream, hsTable);
+            }
+ 
         }
 
         private void highScore_Click(object sender, EventArgs e)
         {
-            players = hsTable.listaHS;
+            players = hsTable.listaHS.OrderBy(p => -p.Score).ToList();
             HighScore HS = new HighScore(players);
             HS.ShowDialog();
         }

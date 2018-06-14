@@ -6,10 +6,17 @@ using System.Threading.Tasks;
 
 namespace skribble
 {
+    [Serializable]
     public class Player
     {
         public String Name { get; set; }
         public int Score { get; set; }
+
+        public Player()
+        {
+            
+            Score = 0;
+        }
         public Player(String name,int score)
         {
             this.Name = name;

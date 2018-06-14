@@ -74,7 +74,7 @@
             this.Controls.Add(this.startGame);
             this.Name = "Launcher";
             this.Text = "Skribble";
-            this.Load += new System.EventHandler(this.Launcher_Load);
+            
             this.ResumeLayout(false);
 
         }
