@@ -83,5 +83,10 @@ namespace skribble
             }
             newPlayer = new Player(playerName, currentScore);
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

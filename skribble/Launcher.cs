@@ -16,7 +16,7 @@ namespace skribble
     public partial class Launcher : Form
     {
         public HighScoreTable hsTable;
-        public PicturesDoc pcDoc;
+        public PicturesDoc pcDoc = null;
         public List<Player> players;
         public Launcher()
         {
@@ -40,7 +40,8 @@ namespace skribble
         {
             AdminAuthentication AA = new AdminAuthentication();
             AA.ShowDialog();
-            
+            pcDoc.pictures.Add(AA.pictureName);
+            MessageBox.Show(pcDoc.pictures.Count.ToString());
         }
 
         private void startGame_Click(object sender, EventArgs e)

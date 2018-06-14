@@ -18,7 +18,7 @@ namespace skribble
         bool f2 = true;
         bool f3 = true;
         string picturePath = "";
-
+        public string pictureName = "";
         string pictureFolder = System.IO.Path.GetFullPath(@"..\\..\\Pictures\\");
         public AdminAuthentication()
         {
@@ -110,16 +110,9 @@ namespace skribble
         private void addPictureButton_Click(object sender, EventArgs e)
         {
             string dest = pictureFolder + pictureNameTextBox.Text + ".jpg";
-            if (pictureNameTextBox.Text == "")
-            {
-                MessageBox.Show("Enter valid name");
-            }
-            else
-            {
-                System.IO.File.Copy(picturePath, dest, true);
-            }
-            Launcher obj = Parent as Launcher;
-            obj.pcDoc.pictures.Add(pictureNameTextBox.Text);
+            System.IO.File.Copy(picturePath, dest, true);
+            pictureName = pictureNameTextBox.Text;
+            this.Close();
         }
 
         private void pictureNameTextBox_TextChanged(object sender, EventArgs e)

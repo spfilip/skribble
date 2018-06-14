@@ -124,4 +124,7 @@
   <data name="if_f_cross_256_282471" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\if_f-cross_256_282471.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="loginIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\loginIcon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
