@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.passwordTextBox = new System.Windows.Forms.TextBox();
             this.signIn = new System.Windows.Forms.Label();
             this.userTextBox = new System.Windows.Forms.TextBox();
@@ -35,6 +36,10 @@
             this.browsePcButton = new System.Windows.Forms.Button();
             this.pictureNameTextBox = new System.Windows.Forms.TextBox();
             this.addPictureButton = new System.Windows.Forms.Button();
+            this.epUsername = new System.Windows.Forms.ErrorProvider(this.components);
+            this.epPassword = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.epUsername)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epPassword)).BeginInit();
             this.SuspendLayout();
             // 
             // passwordTextBox
@@ -50,6 +55,7 @@
             this.passwordTextBox.Click += new System.EventHandler(this.passwordTextBox_Click);
             this.passwordTextBox.TextChanged += new System.EventHandler(this.passwordTextBox_TextChanged);
             this.passwordTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.passwordTextBox_KeyDown);
+            this.passwordTextBox.Leave += new System.EventHandler(this.passwordTextBox_Leave);
             // 
             // signIn
             // 
@@ -60,7 +66,6 @@
             this.signIn.Size = new System.Drawing.Size(116, 31);
             this.signIn.TabIndex = 4;
             this.signIn.Text = "SIGN IN";
-            
             // 
             // userTextBox
             // 
@@ -76,6 +81,7 @@
             this.userTextBox.Click += new System.EventHandler(this.userTextBox_Click);
             this.userTextBox.TextChanged += new System.EventHandler(this.userTextBox_TextChanged);
             this.userTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.userTextBox_KeyDown);
+            this.userTextBox.Leave += new System.EventHandler(this.userTextBox_Leave);
             // 
             // loginButton
             // 
@@ -129,6 +135,16 @@
             this.addPictureButton.UseVisualStyleBackColor = true;
             this.addPictureButton.Click += new System.EventHandler(this.addPictureButton_Click);
             // 
+            // epUsername
+            // 
+            this.epUsername.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.epUsername.ContainerControl = this;
+            // 
+            // epPassword
+            // 
+            this.epPassword.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.epPassword.ContainerControl = this;
+            // 
             // AdminAuthentication
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -143,7 +159,9 @@
             this.Controls.Add(this.userTextBox);
             this.Name = "AdminAuthentication";
             this.Text = "Admin Authentication";
-            
+            this.Load += new System.EventHandler(this.AdminAuthentication_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.epUsername)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epPassword)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -157,5 +175,7 @@
         private System.Windows.Forms.Button browsePcButton;
         private System.Windows.Forms.TextBox pictureNameTextBox;
         private System.Windows.Forms.Button addPictureButton;
+        private System.Windows.Forms.ErrorProvider epUsername;
+        private System.Windows.Forms.ErrorProvider epPassword;
     }
 }

@@ -49,3 +49,16 @@ C:\Users\petar\Desktop\tmp\skribble\obj\Debug\skribble.csproj.GenerateResource.C
 C:\Users\petar\Desktop\tmp\skribble\obj\Debug\skribble.csproj.CoreCompileInputs.cache
 C:\Users\petar\Desktop\tmp\skribble\obj\Debug\skribble.exe
 C:\Users\petar\Desktop\tmp\skribble\obj\Debug\skribble.pdb
+C:\Users\Filip\Desktop\skribble\skribble\bin\Debug\skribble.exe.config
+C:\Users\Filip\Desktop\skribble\skribble\bin\Debug\skribble.exe
+C:\Users\Filip\Desktop\skribble\skribble\bin\Debug\skribble.pdb
+C:\Users\Filip\Desktop\skribble\skribble\obj\Debug\skribble.csprojAssemblyReference.cache
+C:\Users\Filip\Desktop\skribble\skribble\obj\Debug\skribble.AdminAuthentication.resources
+C:\Users\Filip\Desktop\skribble\skribble\obj\Debug\skribble.Game.resources
+C:\Users\Filip\Desktop\skribble\skribble\obj\Debug\skribble.HighScore.resources
+C:\Users\Filip\Desktop\skribble\skribble\obj\Debug\skribble.Launcher.resources
+C:\Users\Filip\Desktop\skribble\skribble\obj\Debug\skribble.Properties.Resources.resources
+C:\Users\Filip\Desktop\skribble\skribble\obj\Debug\skribble.csproj.GenerateResource.cache
+C:\Users\Filip\Desktop\skribble\skribble\obj\Debug\skribble.csproj.CoreCompileInputs.cache
+C:\Users\Filip\Desktop\skribble\skribble\obj\Debug\skribble.exe
+C:\Users\Filip\Desktop\skribble\skribble\obj\Debug\skribble.pdb
