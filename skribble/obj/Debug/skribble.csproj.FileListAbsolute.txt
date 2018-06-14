@@ -23,3 +23,4 @@ C:\Users\Fico\Desktop\Skribble\skribble\skribble\obj\Debug\skribble.Launcher.res
 C:\Users\Fico\Desktop\Skribble\skribble\skribble\obj\Debug\skribble.Properties.Resources.resources
 C:\Users\Fico\Desktop\Skribble\skribble\skribble\obj\Debug\skribble.csproj.GenerateResource.Cache
 C:\Users\Fico\Desktop\Skribble\skribble\skribble\obj\Debug\skribble.HighScore.resources
+C:\Users\Filip\Desktop\Skribble\skribble\skribble\obj\Debug\skribble.HighScore.resources

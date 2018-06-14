@@ -25,11 +25,6 @@ namespace skribble
             InitializeComponent();
         }
 
-        private void signIn_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void AdminAuthentication_Load(object sender, EventArgs e)
         {
 
@@ -70,13 +65,8 @@ namespace skribble
         {
             if(userTextBox.Text=="admin" && passwordTextBox.Text=="finkiVP")
             {
-                MessageBox.Show("Successful login");
                 browsePcButton.Enabled = true;
                 pictureNameTextBox.Enabled = true;
-            }
-            else
-            {
-                MessageBox.Show("Unsuccessful login");
             }
         }
 
@@ -104,6 +94,16 @@ namespace skribble
             if (e.KeyCode == Keys.Enter)
             {
                 loginButton.PerformClick();
+                if (passwordTextBox.Text == "finkiVP")
+                {
+                    epPassword.Icon = Properties.Resources.if_f_check_256_282474;
+                    epPassword.SetError(passwordTextBox, " Username error");
+                }
+                else
+                {
+                    epPassword.Icon = Properties.Resources.if_f_cross_256_282471;
+                    epPassword.SetError(passwordTextBox, " Ok");
+                }
             }
         }
 
@@ -145,5 +145,32 @@ namespace skribble
             }
         }
 
+        private void userTextBox_Leave(object sender, EventArgs e)
+        {
+            if (userTextBox.Text == "admin")
+            {
+                epUsername.Icon = Properties.Resources.if_f_check_256_282474;
+                epUsername.SetError(userTextBox, " Username error");
+            }
+            else
+            {
+                epUsername.Icon = Properties.Resources.if_f_cross_256_282471;
+                epUsername.SetError(userTextBox, " Ok");
+            }
+        }
+
+        private void passwordTextBox_Leave(object sender, EventArgs e)
+        {
+            if (passwordTextBox.Text == "finkiVP")
+            {
+                epPassword.Icon = Properties.Resources.if_f_check_256_282474;
+                epPassword.SetError(passwordTextBox, " Username error");
+            }
+            else
+            {
+                epPassword.Icon = Properties.Resources.if_f_cross_256_282471;
+                epPassword.SetError(passwordTextBox, " Ok");
+            }
+        }
     }
 }

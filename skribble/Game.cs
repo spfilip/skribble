@@ -55,7 +55,8 @@ namespace skribble
             timeLeft = 60;
             timer1.Start();
             //Treba funkcija za dodavanje na sliki
-            pictureBox1.Image = new Bitmap("C:\\Users\\Fico\\Desktop\\Skribble\\skribble\\skribble\\Pictures\\dv.jpg");
+            string pictureFolder = System.IO.Path.GetFullPath(@"..\\..\\Pictures\\");
+            pictureBox1.Image = new Bitmap(pictureFolder + "dv.jpg");
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             
         }
