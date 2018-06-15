@@ -19,14 +19,29 @@ namespace skribble
         bool f3 = true;
         string picturePath = "";
         public String pictureName;
-
+        Timer tim;
+        int brojac = 0;
         string pictureFolder = System.IO.Path.GetFullPath(@"..\\..\\Pictures\\");
         public AdminAuthentication()
         {
             InitializeComponent();
             pictureName = "";
+            loginLabel.Text = "";
+            tim = new Timer();
+            tim.Interval = 1000;
+            tim.Tick += new EventHandler(tim_Tick);
         }
         
+        private void tim_Tick(object sender, EventArgs e)
+        {
+            brojac++;
+            if (brojac == 3)
+            {
+                loginLabel.Text = "";
+                brojac = 0;
+                tim.Stop();
+            }
+        }
 
         private void userTextBox_Click(object sender, EventArgs e)
         {
@@ -61,16 +76,21 @@ namespace skribble
 
         private void loginButton_Click(object sender, EventArgs e)
         {
+            tim.Start();
             if(userTextBox.Text=="admin" && passwordTextBox.Text=="finkiVP")
             {
-                MessageBox.Show("Successful login");
+                loginLabel.ForeColor = Color.Green;
+                loginLabel.Text = "Successful login";
                 browsePcButton.Enabled = true;
                 pictureNameTextBox.Enabled = true;
             }
             else
             {
-                MessageBox.Show("Unsuccessful login");
+                loginLabel.ForeColor = Color.Red;
+                loginLabel.Text = "Unsuccessful login";
+
             }
+            
         }
 
         private void browsePcButton_Click(object sender, EventArgs e)
@@ -97,6 +117,16 @@ namespace skribble
             if (e.KeyCode == Keys.Enter)
             {
                 loginButton.PerformClick();
+                if (passwordTextBox.Text == "finkiVP")
+                {
+                    epPassword.Icon = Properties.Resources.if_f_check_256_282474;
+                    epPassword.SetError(passwordTextBox, " Password correct");
+                }
+                else
+                {
+                    epPassword.Icon = Properties.Resources.if_f_cross_256_282471;
+                    epPassword.SetError(passwordTextBox, " Password incorrect");
+                }
             }
         }
 
@@ -144,5 +174,36 @@ namespace skribble
             }
         }
 
+        private void AdminAuthentication_Load(object sender, EventArgs e)
+        {
+
+        }
+        private void passwordTextBox_Leave(object sender, EventArgs e)
+        {
+            if (passwordTextBox.Text == "finkiVP")
+            {
+                epPassword.Icon = Properties.Resources.if_f_check_256_282474;
+                epPassword.SetError(passwordTextBox, " Password correct");
+            }
+            else
+            {
+                epPassword.Icon = Properties.Resources.if_f_cross_256_282471;
+                epPassword.SetError(passwordTextBox, " Password incorrect");
+            }
+        }
+
+        private void userTextBox_Leave(object sender, EventArgs e)
+        {
+            if (userTextBox.Text == "admin")
+            {
+                epUsername.Icon = Properties.Resources.if_f_check_256_282474;
+                epUsername.SetError(userTextBox, " Username correct");
+            }
+            else
+            {
+                epUsername.Icon = Properties.Resources.if_f_cross_256_282471;
+                epUsername.SetError(userTextBox, " Username incorrect");
+            }
+        }
     }
 }
