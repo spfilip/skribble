@@ -29,7 +29,8 @@ namespace skribble
             FileInfo[] Files = d.GetFiles("*.jpg");
             foreach (FileInfo file in Files)
             {
-                pcDoc.addPicture(file);
+                if (!file.Name.Equals("Untitled.jpg"))
+                    pcDoc.addPicture(file);
             }
 
             System.IO.Directory.CreateDirectory(System.IO.Path.GetFullPath(@"..\\..\\") + "High Scores");

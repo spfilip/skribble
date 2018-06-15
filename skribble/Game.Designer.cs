@@ -46,6 +46,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.guessBtn = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
+            this.bfsButton = new System.Windows.Forms.Button();
+            this.toVisitLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nameEp)).BeginInit();
             this.SuspendLayout();
@@ -189,11 +191,32 @@
             this.label7.Size = new System.Drawing.Size(0, 13);
             this.label7.TabIndex = 18;
             // 
+            // bfsButton
+            // 
+            this.bfsButton.Location = new System.Drawing.Point(393, 339);
+            this.bfsButton.Name = "bfsButton";
+            this.bfsButton.Size = new System.Drawing.Size(75, 23);
+            this.bfsButton.TabIndex = 19;
+            this.bfsButton.Text = "bfs";
+            this.bfsButton.UseVisualStyleBackColor = true;
+            this.bfsButton.Click += new System.EventHandler(this.bfsButton_Click);
+            // 
+            // toVisitLabel
+            // 
+            this.toVisitLabel.AutoSize = true;
+            this.toVisitLabel.Location = new System.Drawing.Point(393, 369);
+            this.toVisitLabel.Name = "toVisitLabel";
+            this.toVisitLabel.Size = new System.Drawing.Size(35, 13);
+            this.toVisitLabel.TabIndex = 20;
+            this.toVisitLabel.Text = "label3";
+            // 
             // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(615, 432);
+            this.Controls.Add(this.toVisitLabel);
+            this.Controls.Add(this.bfsButton);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.guessBtn);
             this.Controls.Add(this.label6);
@@ -238,5 +261,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button guessBtn;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button bfsButton;
+        private System.Windows.Forms.Label toVisitLabel;
     }
 }
