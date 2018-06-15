@@ -73,7 +73,7 @@ namespace skribble
                 }
                 else
                 {
-                    
+                    plThread.Abort();
                     this.Close();
                 }
                     
@@ -295,17 +295,12 @@ namespace skribble
         private void Game_FormClosing(object sender, FormClosingEventArgs e)
         {
             timer1.Stop();
+            plThread.Abort();
             if (timeLeft != 0)
                 DialogResult = DialogResult.Abort;
         }
 
-        private void bfsButton_Click(object sender, EventArgs e)
-        {
-            //pictureBox1.Image = new Bitmap(pictureFolder + nextImg + ".jpg");
-            //pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            
-            //bfs2(new Bitmap(pictureFolder + "Darth Vader.jpg"));
-        }
+        
 
         void bfsCall()
         {
