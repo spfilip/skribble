@@ -147,6 +147,7 @@
             // 
             // timer1
             // 
+            this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // label5
@@ -193,7 +194,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(615, 432);
+            this.ClientSize = new System.Drawing.Size(615, 450);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.guessBtn);
             this.Controls.Add(this.label6);
@@ -212,6 +213,7 @@
             this.Name = "Game";
             this.Text = "Game";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Game_FormClosing);
+            this.Resize += new System.EventHandler(this.Game_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nameEp)).EndInit();
             this.ResumeLayout(false);

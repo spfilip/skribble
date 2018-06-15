@@ -24,7 +24,9 @@ namespace skribble
         Random rand;
         String nextImg;
         Thread plThread;
-        
+        Bitmap b2;
+        float currWidth;
+        float currHeight;
 
         public Game(HighScoreTable hst, PicturesDoc pcDoc)
         {
@@ -44,6 +46,10 @@ namespace skribble
             timePb.Step = 1;
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             plThread = new Thread(new ThreadStart(bfsCall));
+            b2 = new Bitmap(pictureFolder + "Untitled.jpg");
+            currWidth = this.Width;
+            currHeight = this.Height;
+            
         }
 
      
@@ -68,8 +74,13 @@ namespace skribble
                     timeLabel.Text = "00:60";
                     csLabel.Text = "0";
                     timePb.Value = 0;
+                    plThread.Abort();
                     pictureBox1.Image = null;
+                    pictureBox1.Refresh();
+                    nameTextBox.ReadOnly = false;
                     startButton.Enabled = true;
+                    
+
                 }
                 else
                 {
@@ -91,6 +102,7 @@ namespace skribble
         {
             //playerName = nameTextBox.Text;
             player.Name = nameTextBox.Text.Trim();
+            nameTextBox.ReadOnly = true;
             loadPicture();
             startButton.Enabled = false;
         }
@@ -107,7 +119,8 @@ namespace skribble
 
             //pictureBox1.Image = new Bitmap(pictureFolder + nextImg + ".jpg");
             //pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-
+            plThread.Abort();
+            
             plThread = new Thread(new ThreadStart(bfsCall));
             plThread.Start();
             //label7.Text = "";
@@ -119,7 +132,7 @@ namespace skribble
         {
 
             Size size = new Size(b1.Width, b1.Height);
-            Bitmap b2 = new Bitmap(pictureFolder + "Untitled.jpg");
+            
             Bitmap b3 = new Bitmap(b2, size);
             //pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
  
@@ -138,9 +151,13 @@ namespace skribble
                     //MessageBox.Show(b1.GetPixel(j, i).ToString());
                 }
             }
+            int vkupno = b1.Width * b1.Height;
+            //MessageBox.Show("pq_width=" + pictureBox1.Width + ", p1_height=" + pictureBox1.Height);
 
-            int startI = b1.Height / 2;
-            int startJ = b1.Width / 2;
+            // int startI = b1.Height / 2;
+            //int startJ = b1.Width / 2;
+            int startI = rand.Next(b1.Height);
+            int startJ = rand.Next(b1.Width);
             Pair start = new Pair(startI, startJ);
             Queue<Pair> q = new Queue<Pair>();
 
@@ -151,16 +168,36 @@ namespace skribble
             bool flag = false;
             int brojac = 0;
             int del = 1;
+
+            bool stepsChange = true;
+            int steps = 50;
+            
+            int[] remainders = { 0, 0, 0, 0, 0, 0 };
+
             while (toVisit.Count != 0)
             {
                 if (flag)
                 {
-                    Pair tV = toVisit.ToList()[0];
+                    int randInt = rand.Next(3);
+                    int idx = 0;
+                    if (randInt == 0)
+                        idx = 0;
+                    else if (randInt == 1)
+                        idx = toVisit.Count / 2;
+                    else
+                        idx = toVisit.Count - 1;
+
+                    
+                    Pair tV = toVisit.ToList()[idx];
                     //MessageBox.Show("tvI=" + tV.i + ", tvJ=" + tV.j);
                     toVisit.Remove(tV);
                     q.Enqueue(tV);
                 }
                 flag = true;
+                Pair compareColorPair = q.Peek();
+                int ccpI = compareColorPair.i;
+                int ccpJ = compareColorPair.j;
+                Color compareColor = b1.GetPixel(ccpJ, ccpI);
                 while (q.Count != 0)
                 {
                     Pair curr = q.Dequeue();
@@ -181,8 +218,8 @@ namespace skribble
                         if (nextI >= 0 && nextI < b1.Height && nextJ >= 0 && nextJ < b1.Width)
                         {
                             Color nextColor = b1.GetPixel(nextJ, nextI);
-                            
-                            if (isValidColor(currColor, nextColor) && !visited[nextI, nextJ])
+
+                            if (isValidColor(compareColor, nextColor) && !visited[nextI, nextJ])
                             {
                                 Pair nextPair = new Pair(nextI, nextJ);
                                 q.Enqueue(nextPair);
@@ -194,17 +231,95 @@ namespace skribble
                         }
                     }
 
-                    if (brojac % del == 0)
+                    int notVisited = toVisit.Count;
+                    if (notVisited == 0)
+                        notVisited = 1;
+
+                    if (stepsChange)
+                    {
+                        //steps = 50;
+                        
+                        if (timeLeft % 10 == 0)
+                        {
+                            //steps += 1*increaseTimes;
+                            int idx = timeLeft / 10 - 1;
+                            if (idx < 0)
+                                idx = 0;
+                            if (remainders[idx] <= (6 - timeLeft / 10))
+                            {
+                                //steps += 6 - timeLeft / 10;
+                                steps++;
+                                remainders[idx]++;
+                            }
+
+                            //MessageBox.Show("se zgolemuva za" + (6 - (timeLeft / 10)).ToString());
+                        }
+                            
+                    }
+                    //if (stepsChange)
+                    //steps = 60*3000 - timeLeft * 3000;
+                    int steps2 = 0;
+                    int divide = getNumber(this.pictureBox1);
+                    
+                    if (stepsChange)
+                        steps2 = 10 + notVisited / divide;
+
+                    if (stepsChange)
+                    {
+                        steps = (steps + steps2) / 2;
+                    }
+
+                    if (timeLeft <= 17)
+                        steps = 100;
+
+                    if (timeLeft <= 16)
+                        steps = 200;
+
+                    if (timeLeft <= 15)
+                        steps = 300;
+
+                    if (timeLeft <= 14)
+                        steps = 400;
+
+                    if (timeLeft <= 13)
+                        steps = toVisit.Count/2;
+
+                    if (timeLeft <= 12)
+                        steps = toVisit.Count;
+
+                    //if (timeLeft > 30 && (toVisit.Count < (vkupno / 2)))
+                        //steps = 10;
+
+                    if (timeLeft > 40 && (toVisit.Count < (vkupno / 6)*2))
+                        steps = 10;
+
+                    if (timeLeft > 50 && (toVisit.Count < (vkupno / 6)))
+                        steps = 1;
+
+                    
+
+                    if (steps == 0)
+                        steps = 100;
+
+                    //int steps3 = steps * 2;
+
+                    if (brojac % steps == 0)
                     {
                         //pictureBox1.Image = b3;
                         //pictureBox1.Refresh();
                         setImage(b3);
                         del += 1;
                         brojac = 0;
+                        stepsChange = true;
                     }
+                    else
+                        stepsChange = false;
+
                     brojac++;
                 }
+                //MessageBox.Show("steps=" + steps);
             }
+            setImage(b3);
 
         }
         delegate void SetImageCallback(Bitmap bm);
@@ -221,6 +336,21 @@ namespace skribble
                 pictureBox1.Refresh();
             }
                 
+        }
+
+        int getNumber(PictureBox pb)
+        {
+            int oldWidth = pictureBox1.Width;
+            int oldHeight = pictureBox1.Height;
+
+            int currVkupno = oldWidth * oldHeight;
+            int newWidth = pb.Width;
+            int newHeight = pb.Height;
+
+            int newVkupno = newWidth * oldWidth;
+
+            return (5000 * newVkupno) / currVkupno;
+
         }
 
         bool isValidColor(Color c1, Color c2)
@@ -248,7 +378,9 @@ namespace skribble
             else
             {
                 nameEp.SetError(nameTextBox, null);
-                startButton.Enabled = true;
+                if (!plThread.IsAlive)
+                    startButton.Enabled = true;
+
             }
         }
 
@@ -263,6 +395,7 @@ namespace skribble
                 label7.Text = "TOCNO!!!";
                 plThread.Abort();
                 pictureBox1.Image = null;
+                pictureBox1.Refresh();
                 loadPicture();
                 guessTb.Text = "";
                 
@@ -305,6 +438,56 @@ namespace skribble
         void bfsCall()
         {
             bfs(new Bitmap(pictureFolder + nextImg + ".jpg"));
+        }
+
+        private void Game_Resize(object sender, EventArgs e)
+        {
+            
+
+            float newWidht = this.Width;
+            float newHeight = this.Height;
+
+            float ratioWidth = 1;
+            float ratioHeight = 1;
+
+            if (newWidht > currWidth && newHeight > currHeight)
+            {
+                ratioWidth = newWidht / currWidth;
+                ratioHeight = newHeight / currHeight;
+            }
+            else if (newWidht > currWidth)
+            {
+                ratioWidth = newWidht / currWidth;
+                ratioHeight = currHeight / newHeight;
+            }
+            else if (newHeight > currHeight)
+            {
+                ratioWidth = currWidth / newWidht;
+                ratioHeight = newHeight / currHeight;
+            }
+            else
+            {
+                ratioWidth = currWidth / newWidht;
+                ratioHeight = currHeight / newHeight;
+            }
+
+            ratioWidth = newWidht / currWidth;
+            ratioHeight = newHeight / currHeight;
+
+            SizeF sf = new SizeF(ratioWidth, ratioHeight);
+
+            currWidth = this.Width;
+            currHeight = this.Height;
+
+            //this.Scale(sf);
+            //this.Refresh();
+            //this.PerformAutoScale();
+            foreach (Control c in this.Controls)
+            {
+                
+                c.Scale(sf);
+            }
+
         }
     }
 }
