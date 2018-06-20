@@ -27,7 +27,8 @@ namespace skribble
         Bitmap b2;
         float currWidth;
         float currHeight;
-
+        String textHelp;
+        int counter = 0;
         public Game(HighScoreTable hst, PicturesDoc pcDoc)
         {
             InitializeComponent();
@@ -52,9 +53,23 @@ namespace skribble
             
         }
 
-     
+        private void dodadiBukva()
+        {
+            
+            textHelp = textHelp.Substring(0,counter) + nextImg[counter] + textHelp.Substring(counter+2);
+            label3.Text = textHelp;
+            counter++;
+            
+        }
         private void timer1_Tick(object sender, EventArgs e)
         {
+            int vreme = 60 / (nextImg.Length - 1);
+            
+            if(timeLeft%vreme==0)
+            {
+                dodadiBukva();
+
+            }
             
             if (timeLeft == 0)
             {
@@ -62,7 +77,7 @@ namespace skribble
                 guessBtn.Enabled = false;
                 guessTb.ReadOnly = true;
                 player.Score = currentScore;
-                MessageBox.Show(player.ToString());
+                //MessageBox.Show(player.ToString());
                 if (MessageBox.Show("New Game?", "New Game", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     //DialogResult = DialogResult.Yes;
@@ -116,7 +131,7 @@ namespace skribble
             guessTb.ReadOnly = false;
             //Treba funkcija za dodavanje na sliki
             nextImg = pcDoc.getRandomPicture(rand);
-
+            counter = 0;
             //pictureBox1.Image = new Bitmap(pictureFolder + nextImg + ".jpg");
             //pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             plThread.Abort();
@@ -124,6 +139,14 @@ namespace skribble
             plThread = new Thread(new ThreadStart(bfsCall));
             plThread.Start();
             //label7.Text = "";
+            textHelp="";
+            for (int i = 0; i < nextImg.Length; i++)
+            {
+                textHelp = textHelp + "_";
+                if(i!=nextImg.Length)
+                    textHelp = textHelp + " ";
+            }
+            label3.Text = textHelp;
         }
 
        
@@ -390,9 +413,11 @@ namespace skribble
             //MessageBox.Show("nextImg=" + nextImg);
             if (guessed.ToLower().Equals(nextImg.ToLower()))
             {
-                currentScore++;
+                currentScore = currentScore + timeLeft;
                 csLabel.Text = currentScore.ToString();
+                label7.ForeColor = Color.Green;
                 label7.Text = "TOCNO!!!";
+                
                 plThread.Abort();
                 pictureBox1.Image = null;
                 pictureBox1.Refresh();
@@ -402,7 +427,9 @@ namespace skribble
             }
             else
             {
+                label7.ForeColor = Color.Red;
                 label7.Text = "GRESNO!!!";
+
                 guessTb.Text = "";
                 
             }
@@ -489,5 +516,7 @@ namespace skribble
             }
 
         }
+
+        
     }
 }

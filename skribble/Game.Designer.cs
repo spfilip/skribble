@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.backButton = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.guessTb = new System.Windows.Forms.TextBox();
             this.hintLabel = new System.Windows.Forms.Label();
@@ -46,18 +45,10 @@
             this.label6 = new System.Windows.Forms.Label();
             this.guessBtn = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nameEp)).BeginInit();
             this.SuspendLayout();
-            // 
-            // backButton
-            // 
-            this.backButton.Location = new System.Drawing.Point(528, 12);
-            this.backButton.Name = "backButton";
-            this.backButton.Size = new System.Drawing.Size(75, 23);
-            this.backButton.TabIndex = 1;
-            this.backButton.Text = "Back";
-            this.backButton.UseVisualStyleBackColor = true;
             // 
             // pictureBox1
             // 
@@ -190,11 +181,21 @@
             this.label7.Size = new System.Drawing.Size(0, 13);
             this.label7.TabIndex = 18;
             // 
+            // label3
+            // 
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(358, 361);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(257, 46);
+            this.label3.TabIndex = 19;
+            this.label3.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
             // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(615, 450);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.guessBtn);
             this.Controls.Add(this.label6);
@@ -209,7 +210,6 @@
             this.Controls.Add(this.hintLabel);
             this.Controls.Add(this.guessTb);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.backButton);
             this.Name = "Game";
             this.Text = "Game";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Game_FormClosing);
@@ -222,8 +222,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button backButton;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox guessTb;
         private System.Windows.Forms.Label hintLabel;
@@ -240,5 +238,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button guessBtn;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label3;
     }
 }
