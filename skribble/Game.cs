@@ -64,7 +64,8 @@ namespace skribble
         private void timer1_Tick(object sender, EventArgs e)
         {
             int vreme = 60 / (nextImg.Length - 1);
-            
+            if (vreme < 3)
+                vreme = 3;
             if(timeLeft%vreme==0)
             {
                 dodadiBukva();
